@@ -1,6 +1,9 @@
 import pandas as pd
 
-class CsvDataProcessor():
+"""
+class that handles processing of spotify data using pandas library
+"""
+class DataProcessor():
 
     def __init__(self, fileToLoad):
         self.fileToLoad =fileToLoad

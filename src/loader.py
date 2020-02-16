@@ -1,16 +1,14 @@
+import os
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-from src.models import FactArtistByYear, FactGenreByYear, FactSongByYear
-from src.services import CsvDataProcessor
-import os
+from fact_models import FactArtistByYear, FactGenreByYear, FactSongByYear
+from data_processor import DataProcessor
+from config import Session
 
-engine = create_engine('sqlite:///chartbuster.db')
-
-Session = sessionmaker(bind=engine)
 session = Session()
 
 dirname = os.path.dirname(__file__)
-ds = CsvDataProcessor(os.path.join(dirname, "data/top10s.csv"))
+ds = DataProcessor(os.path.join(dirname, "data/top10s.csv"))
 ds.process()
 
 for i, row in ds.artistsByYear().iterrows():

@@ -1,6 +1,5 @@
 from flask import Flask, request, make_response, jsonify
-from src.models.fact_artist_by_year import FactArtistByYear
-from src.services import StatService
+from src.query_service import QueryService
 
 app = Flask(__name__)
 
@@ -13,7 +12,7 @@ def stat():
     resultset = []
     year = request.args.get('year', None)
     if year:
-        service = StatService()
+        service = QueryService()
 
         topArtist = service.getTopArtistByYear(year)
         if topArtist:
@@ -27,9 +26,9 @@ def stat():
         if  topGenre:
             resultset.append(str(topSong))
 
-        return jsonify(resultset)
+        return make_response(jsonify(resultset), 200)
 
-    return ""
+    return make_response(jsonify(""), 202)
 
 # run
 if __name__ == '__main__':

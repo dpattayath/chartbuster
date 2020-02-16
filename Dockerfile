@@ -8,9 +8,9 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
-RUN python3 bootstrap.py
+RUN python3 src/migrate.py
 
-RUN python3 loader.py
+RUN python3 src/loader.py
 
 EXPOSE 5000
 

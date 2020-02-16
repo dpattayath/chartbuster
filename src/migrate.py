@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
+from config import engine
 
-engine = create_engine('sqlite:///chartbuster.db')
 connection = engine.connect()
 
 # create fact tables
