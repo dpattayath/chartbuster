@@ -23,7 +23,11 @@ Since these are fact tables, every time the environment is up, it will rebuild a
 
 ### Installation instructions ###
 
-* docker-compose up
+~~~~
+cd chartbuster
+docker-compose build
+docker-compose up
+~~~~
 
 ### Known issues ###
 

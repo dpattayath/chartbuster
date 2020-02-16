@@ -28,7 +28,7 @@ def stat():
 
         return make_response(jsonify(resultset), 200)
 
-    return make_response(jsonify(""), 202)
+    return make_response(jsonify(""), 204)
 
 # run
 if __name__ == '__main__':
