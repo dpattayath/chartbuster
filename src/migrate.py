@@ -1,27 +1,15 @@
-from sqlalchemy import create_engine
+import sqlalchemy as db
 from config import engine
+from fact_models import FactArtistByYear, FactGenreByYear, FactSongByYear
 
-connection = engine.connect()
+metadata = db.MetaData()
 
-# create fact tables
-connection.execute("DROP TABLE IF EXISTS fact_artist_by_year")
-connection.execute("CREATE TABLE fact_artist_by_year ("
-    "year INTEGER PRIMARY KEY,"
-    "artist TEXT NOT NULL,"
-    "titles INTEGER NOT NULL);")
+models = [
+    FactArtistByYear.__table__,
+    FactGenreByYear.__table__,
+    FactSongByYear.__table__
+]
 
-connection.execute("DROP TABLE IF EXISTS fact_genre_by_year")
-connection.execute("CREATE TABLE fact_genre_by_year ("
-    "year INTEGER PRIMARY KEY,"
-    "genre TEXT NOT NULL,"
-    "titles INTEGER NOT NULL);")
-
-connection.execute("DROP TABLE IF EXISTS fact_song_by_year")
-connection.execute("CREATE TABLE fact_song_by_year ("
-    "year INTEGER PRIMARY KEY,"
-    "song TEXT NOT NULL,"
-    "popularity INTEGER NOT NULL);")
+metadata.create_all(engine, tables=models, checkfirst=True)
 
 print(engine.table_names())
-
-connection.close()
