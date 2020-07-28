@@ -1,4 +1,4 @@
-# README #
+# Chartbuster #
 
 Chartbuster is an app that consumes a kaggle data set of spotify top chart busters and expose stats via a flask api.
 
